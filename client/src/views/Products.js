@@ -16,7 +16,11 @@ const Products = () => {
     },[]);
     
     const handleDelete = async(id) => {
-        const res = await axios.delete(`http://localhost:3000/api/:${id}`);
+        const res = await axios.delete(`http://localhost:3000/api/products/${id}`);
+        console.log(res,"responseeee");
+        if(res.status === 200){
+            fetchData(); 
+        }
         return res;
     }
 
@@ -29,12 +33,11 @@ return(
         {
             ProductData?.map((elem) => (
                 <>
-                <h2 key={elem.id}>{elem.id}</h2>
-                <p>{elem.name}</p>
+                <p key={elem._id}>{elem.name}</p>
                 <p>{elem.price}</p>
                 <p>{elem.quantity}</p>
                 <button onClick={handleEdit}>Edit</button>
-                <button onclick={handleDelete(elem.id)}>Delete</button>
+                <button onClick={() => handleDelete(elem._id)}>Delete</button>
                 </>
             ))
         }
