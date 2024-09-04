@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const cors = require("cors")
 const productRoute = require("./routes/product.route.js")
 
+//Avoiding cors issue on UI
+app.use(cors());
 
 //middleware
 app.use(express.json());
